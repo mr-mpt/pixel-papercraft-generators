@@ -304,16 +304,74 @@ Draws the head.
 
 ```typescript
 generator.drawTexture(name, [0, 8, 8, 8], [x - 64, y + 0, 64, 64]);
+// ... other
 ```
 
 Draws a head base (by grabbing a chunk from the texture in x and y coords and then putting them onto the image in x and y coords).
 
 ```typescript
 generator.drawTexture(name, [32, 8, 8, 8], [x - 64, y + 0, 64, 64]);
+// ... other
 ```
 
 Draws a head overlay (Just like the head base)
 
 ```typescript
+generator.defineTextureInput("Skin", {
+    standardWidth: 64,
+    standardHeight: 64, // Width and height of the texture
+    choices: [], // Adds choices for textures
+    enableMinecraftSkinInput: true, // Enables Minecraft skin input
+  });
+```
 
+(The comments should explain each part)
+
+```typescript
+generator.defineBooleanInput("Show Folds", true);
+
+  const showFolds = generator.getBooleanInputValue("Show Folds");
+```
+
+Makes a radio check that shows folds
+
+```typescript
+generator.drawImage("Background", [0, 0]);
+```
+
+Draws the backgroiund as a background (Useful for watermarking)
+
+```typescript
+drawHead("Skin", 185, 117);
+```
+
+Will draw the Skin (or head) at X coordinate 185 and Y coordinate 117.
+
+```typescript
+if (showFolds) {
+    generator.drawImage("Folds", [0, 0]);
+}
+```
+
+If the `showFolds` radio is checked, then it will draw the folds for the skin.
+
+## Exporting
+
+To export it. Edit [this](src/generators/generators.ts) to include your generator. Here is an example:
+
+```typescript
+import { generator as myGenerator } from "@genroot/generators/path/to/your/generator.ts"; // export it
+```
+
+Note that the file has arrays that sort the generators based on what they are; if the generator is a block generator, then add it:
+
+```typescript
+// Blocks, Items and Accessories
+export const utility: GeneratorDef[] = [
+  minecraftBlockGenerator,
+  minecraftItemGenerator,
+  minecraftCapeAndElytraGenerator,
+  minecraftCharacterHeadsGenerator,
+  myGenerator, // Add your generator.
+];
 ```
