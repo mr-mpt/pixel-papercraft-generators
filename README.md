@@ -260,4 +260,52 @@ import foldsImage from "./images/Folds.png";
 Imports assets that will be used.
 
 ```typescript
+const id = "example";
+const name = "Example";
+
+const instructions: InstructionsDef = `
+An example generator to demonstrate how to write a generator script.
+`;
+
+const history: HistoryDef = [];
 ```
+
+Contains the ID, name, instructions, and history of the generator.
+
+```typescript
+const images: ImageDef[] = [
+  { id: "Background", url: backgroundImage.src },
+  { id: "Folds", url: foldsImage.src },
+];
+
+const textures: TextureDef[] = [
+  {
+    id: "Skin",
+    url: skinImage.src,
+    standardWidth: 64,
+    standardHeight: 64,
+  },
+];
+```
+
+Add the necessary images and textures.
+
+#### `Script` module
+
+The `Script` module is very complex. so, we will explain it in its own block.
+
+```typescript
+const drawHead = (name: string, x: number, y: number) => {
+  // ...
+}
+```
+
+Draws the head.
+
+```typescript
+// Head Base
+    generator.drawTexture(name, [0, 8, 8, 8], [x - 64, y + 0, 64, 64]); // Right
+```
+
+Draws the head base (by grabbing a chunk from the texture in x and y coords and then putting them onto the image in x and y coords).
+
