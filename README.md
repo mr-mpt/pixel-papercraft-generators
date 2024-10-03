@@ -303,9 +303,17 @@ const drawHead = (name: string, x: number, y: number) => {
 Draws the head.
 
 ```typescript
-// Head Base
-    generator.drawTexture(name, [0, 8, 8, 8], [x - 64, y + 0, 64, 64]); // Right
+generator.drawTexture(name, [0, 8, 8, 8], [x - 64, y + 0, 64, 64]);
 ```
 
-Draws the head base (by grabbing a chunk from the texture in x and y coords and then putting them onto the image in x and y coords).
+Draws a head base (by grabbing a chunk from the texture in x and y coords and then putting them onto the image in x and y coords).
 
+```typescript
+generator.drawTexture(name, [32, 8, 8, 8], [x - 64, y + 0, 64, 64]);
+```
+
+Draws a head overlay (Just like the head base)
+
+```typescript
+
+```
